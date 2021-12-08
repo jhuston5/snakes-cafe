@@ -38,10 +38,15 @@ Unicorn Tears
 
 food_record = []
 
+# Thanks to Bionca for helping me here - utilize an empty list to store food values
+real_food = []
+for i in food.values():
+  
+  real_food +=i
+
 
 # set up an order input
 def restaurant_order():
-  order_list = []
 
   order = input("> ")
 
@@ -49,17 +54,19 @@ def restaurant_order():
   # set a conditional if order is true to print an acknowledgement of the order
   # Check if it is a part of the food module
 
-  if order == True:
+  if order in real_food:
     food_record.append(order)
-    print(food_record)
+    
     food_counter = food_record.count(order)
     for item in food_record:
       if food_counter > 1:
         print(f'** {food_counter} orders of {item} have been added to your meal **')
+        restaurant_order()
       else:
         print(f'** {food_counter} order of {item} have been added to your meal **')
-        restaurant_order
-  elif order == "end":
+        restaurant_order()       
+  elif order == "quit":
+    print(food_record)
     exit()
   else:
     print('***Please make a different menu selection***')
